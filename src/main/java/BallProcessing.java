@@ -27,55 +27,31 @@ public class BallProcessing extends PApplet {
 
     @Override
     public void draw() {
-        ellipse(x1,height/5, diameter, diameter);
-        ellipse(x2,height*2/5, diameter, diameter);
-        ellipse(x3,height*3/5, diameter, diameter);
+        Ball1Creation();
+        Ball2Creation();
+        Ball3Creation();
+        Ball4Creation();
+
+    }
+
+    private void Ball4Creation() {
         ellipse(x4,height*4/5, diameter, diameter);
-        x1+=1;
-        x2+=2;
-        x3+=3;
         x4+=4;
     }
 
+    private void Ball3Creation() {
+        ellipse(x3,height*3/5, diameter, diameter);
+        x3+=3;
+    }
+
+    private void Ball2Creation() {
+        ellipse(x2,height*2/5, diameter, diameter);
+        x2+=2;
+    }
+
+    private void Ball1Creation() {
+        ellipse(x1,height/5, diameter, diameter);
+        x1+=1;
+    }
+
 }
-
-
-//import processing.core.PApplet;
-//
-//public class BallProcessing extends PApplet {
-//
-//    public static final int WIDTH = 640;
-//    public static final int HEIGHT = 480;
-//    public static final int Diameter = 10;
-//    int x=0;
-//
-//    public static void main(String[] args) {
-//        PApplet.main("BallProcessing");
-//    }
-//
-//    @Override
-//    public void settings() {
-//        super.settings();
-//        size(WIDTH, HEIGHT);
-//    }
-//
-//    @Override
-//    public void setup() {
-//        System.out.println("Inside setup method");
-//    }
-//
-//    @Override
-//    public void draw() {
-//        PaintWhite();
-//        drawCircle();
-//    }
-//
-//    private void drawCircle() {
-//        ellipse(x, mouseY, Diameter, Diameter);
-//        x++;
-//    }
-//
-//    private void PaintWhite() {
-//        background(255);
-//    }
-//}
