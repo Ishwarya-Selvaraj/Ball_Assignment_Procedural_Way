@@ -2,13 +2,14 @@ import processing.core.PApplet;
 
 public class BallProcessing extends PApplet {
 
-    final int width = 600;
-    final int height = 600;
-    final int diameter = 10;
-    int x1=0;
-    int x2=0;
-    int x3=0;
-    int x4=0;
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 600;
+    public static final int BALL_COUNT = 4;
+    public static final int FRAME = 5;
+    public static final int DIAMETER = 10;
+    public int[] unitsPerFrame = new int[BALL_COUNT];
+    public int[] xPosition = new int[BALL_COUNT];
+    public int[] yPosition = new int[BALL_COUNT];
 
     public static void main(String[] args) {
         PApplet.main("BallProcessing");
@@ -17,41 +18,35 @@ public class BallProcessing extends PApplet {
     @Override
     public void settings() {
         super.settings();
-        size(width,height);
+        size(WIDTH, HEIGHT);
     }
 
     @Override
     public void setup() {
-        System.out.println("Inside setup");
+        ballSetup();
+    }
+
+    private void ballSetup() {
+        for (int index = 0; index < BALL_COUNT; index++) {
+            xPosition[index] = 1;
+            yPosition[index] = HEIGHT * (index + 1) / FRAME;
+            unitsPerFrame[index] = index + 1;
+        }
     }
 
     @Override
     public void draw() {
-        Ball1Creation();
-        Ball2Creation();
-        Ball3Creation();
-        Ball4Creation();
-
+        for (int index = 0; index < BALL_COUNT; index++) {
+            circle(index);
+            moveCircle(index);
+        }
     }
 
-    private void Ball4Creation() {
-        ellipse(x4,height*4/5, diameter, diameter);
-        x4+=4;
+    private void moveCircle(int index) {
+        xPosition[index] += unitsPerFrame[index];
     }
 
-    private void Ball3Creation() {
-        ellipse(x3,height*3/5, diameter, diameter);
-        x3+=3;
+    private void circle(int index) {
+        ellipse(xPosition[index], yPosition[index], DIAMETER, DIAMETER);
     }
-
-    private void Ball2Creation() {
-        ellipse(x2,height*2/5, diameter, diameter);
-        x2+=2;
-    }
-
-    private void Ball1Creation() {
-        ellipse(x1,height/5, diameter, diameter);
-        x1+=1;
-    }
-
 }
